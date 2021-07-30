@@ -148,14 +148,34 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
-  var current= this.head;
-  
   if(pos1 > this.size() || pos1< 0 || pos2 > this.size() || pos2 < 0) return false;
   
- 
-
+  if(!this.head){
+    return false;
+  }else{
+    var current= this.head;
+    var cont=0;
+    var aux1=0;
+    var aux2=0;
   
+ while(current){
+if(cont===pos1) aux1=current.value;
+if(cont===pos2) aux2=current.value;
+cont++;
+current= current.next;
+ }
+cont=0; 
+current=this.head;
 
+
+ while(current){
+  if(cont===pos1) current.value=aux2;
+  if(cont===pos2) current.value=aux1;
+  cont++;
+  current= current.next;
+   }
+  return true;
+  }
 }
 
 // EJERCICIO 5
@@ -171,6 +191,17 @@ LinkedList.prototype.switchPos = function(pos1, pos2){
 // Continuando con el nodo 2 de la lista 2, conectandose con el nodo 2 de la lista 2.
 var mergeLinkedLists = function(linkedListOne, linkedListTwo){
   // Tu código aca:
+  var nuevaL= new LinkedList();
+  var lista1= linkedListOne.head;
+  var lista2=linkedListTwo.head;
+  
+  while(lista1 && lista2){
+    nuevaL.add(lista1.value);
+    nuevaL.add(lista2.value);
+    lista1=lista1.next;
+    lista2=lista2.next;
+    }
+    return nuevaL;
 
 }
 
@@ -243,6 +274,8 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
 BinarySearchTree.prototype.height = function(){
   // Tu código aca:
+  
+
 
 }
 
@@ -327,6 +360,31 @@ var specialSort = function(array, orderFunction) {
 function closureDetect(symptoms, min) {
   // Tu código aca:
 
+
+    // return function (person) {
+    //   var symp = 0;
+  
+    //   for (var i = 0; i < symptoms.length; i++) {
+    //     if (symptoms.includes(person.symptoms[i])) {
+    //       symp++;
+    //     }
+    //   }
+    //   if (symp >= min) return true;
+    //   return false;
+    // }
+
+  return function(cb){
+    
+    let contador=0;
+    for(let i=0;i<symptoms.length;i++){
+      if(symptoms.includes(cb.symptoms[i])) contador++;
+    }
+    if(contador>=min){
+      return true;
+    }else{
+      return false;
+    }
+}
 }
 
 // -------------------
