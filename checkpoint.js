@@ -250,6 +250,18 @@ var mergeLinkedLists = function(linkedListOne, linkedListTwo){
 
 var cardGame = function(playerOneCards, playerTwoCards){
   // Tu código aca:
+  var puntos1=100;
+
+
+
+  var puntos2=100;
+
+  if(playerOneCards===0 || puntos1<0)return 'PLAYER TWO';
+  if(playerTwoCards===0 || puntos2<0)return 'PLAYER ONE';
+
+  
+
+  
 
 }
 
@@ -274,7 +286,14 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
 BinarySearchTree.prototype.height = function(){
   // Tu código aca:
-  
+
+  if (!this.value) return 0;
+  if(!this.left && !this.right) return 1;
+
+  if(this.left) return 1+ this.left.height();
+  if(this.right) return 1+ this.right.height();
+
+  return Math.max(left,this.right);
 
 
 }
@@ -299,7 +318,28 @@ BinarySearchTree.prototype.height = function(){
 var binarySearch = function (array, target) {
   // Tu código aca:
 
+  var pivot=array[0];
+  var izq=[];
+  var der=[];
+
+  if(target<pivot){
+  for(let i=0; i<array.length;i++){
+    if(target===array[i]) return i;
+    if(array[i]<pivot) izq.push(array[i]);
+    binarySearch(izq, target);
 }
+
+}else{
+  for(let i=0; i<array.length;i++){
+    if(target===array[i]) return i;
+    if(array[i]>pivot) der.push(array[i]);
+    binarySearch(der, target);
+  }
+
+  return -1;
+}
+}
+
 
 // EJERCICIO 9
 // Ordená un arreglo de objetos usando un bubble sort pero con algunas particularidades.
@@ -360,18 +400,6 @@ var specialSort = function(array, orderFunction) {
 function closureDetect(symptoms, min) {
   // Tu código aca:
 
-
-    // return function (person) {
-    //   var symp = 0;
-  
-    //   for (var i = 0; i < symptoms.length; i++) {
-    //     if (symptoms.includes(person.symptoms[i])) {
-    //       symp++;
-    //     }
-    //   }
-    //   if (symp >= min) return true;
-    //   return false;
-    // }
 
   return function(cb){
     
