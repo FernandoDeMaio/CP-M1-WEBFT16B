@@ -40,7 +40,20 @@ const {
 var isAncestor = function(genealogyTree, ancestor, descendant){
   // Tu código aca:
 
-}
+     if (genealogyTree[ancestor].length < 1) return false;
+    
+    for (let i = 0; i < genealogyTree[ancestor].length; i++) {
+     
+      if (genealogyTree[ancestor][i] === descendant) return true;
+      
+      if (genealogyTree[genealogyTree[ancestor][i]].length > 0) {
+        return isAncestor(genealogyTree, genealogyTree[ancestor][i], descendant);
+      }
+    }
+    return false;
+  }
+
+
 
 
 // EJERCICIO 2
@@ -75,9 +88,17 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 // Para números negativos de n debe devolver null
 // PISTA: Pueden utilizar el método Object.keys() para f(1)
 
-function secuenciaHenry(obj, n) {
-  // Tu código aca:
+function secuenciaHenry(obj, n) {             //cuando n=1 return 9 y no corre la linea 100. 
+  // Tu código aca:                           //cuando n=2 sh(obj, n-2) es igual a 0 por lo que retorna 2;
 
+  let f0=obj['first'];
+  let f1= Object.keys(obj).length;
+  if(n<0) return null;
+  if(n===0) return f0;
+  if(n===1) return f1;
+
+ return secuenciaHenry(obj, n-1) * secuenciaHenry(obj, n-2) - secuenciaHenry(obj, n-2);
+        // 9                      *       2                 -       2                    
 }
 
 // ---------------------
@@ -98,7 +119,15 @@ function secuenciaHenry(obj, n) {
 
 LinkedList.prototype.size = function(){
   // Tu código aca:
+  var current=this.head;
+  if(!current) return 0;
 
+  let contador=0;
+  while(current){
+    contador++;
+    current= current.next;
+  }
+  return contador;
 }
 
 
@@ -119,6 +148,13 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
+  var current= this.head;
+  
+  if(pos1 > this.size() || pos1< 0 || pos2 > this.size() || pos2 < 0) return false;
+  
+ 
+
+  
 
 }
 
